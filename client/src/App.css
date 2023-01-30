@@ -1,0 +1,151 @@
+/* .App{
+  background-image: linear-gradient(rgb(220, 122, 122),rgb(38, 176, 186));
+} */
+
+body {
+  margin:0;
+  padding:0;
+  font-family: sans-serif;
+  background: linear-gradient(#141e30, #243b55);
+}
+
+.App{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Heading{
+  font-weight: 600;
+  color:white;
+  font-size:2em;
+  margin-top: 1em;
+  margin-bottom: 0.3em;
+}
+.disclaimer{
+  color:white;
+  font-size: 0.9em;
+  margin-top: 0.3em;
+  font-weight: 530;
+}
+
+.container{
+  width : 40em;
+  max-height: 25em;
+  background: rgba(0,0,0,.5);
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  overflow-y: auto;
+  border-radius: 10px;
+}
+
+.message{
+  /* background-color: blue; */
+  margin-top:0.6em;
+  margin-bottom:0.6em;
+  max-width: 20em;
+  padding:10px;
+  border-radius: 5px;
+  /* padding-bottom: 1em; */
+  overflow-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+  position:relative;
+  min-width:7em;
+}
+
+.message-neutral{
+  display: flex;
+  flex-direction: row;
+  background-color: grey;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.message-neutral > .message-timestamp {
+  margin-left:1em;
+}
+
+.message-left{
+  margin-left:2em;
+  background-color: rgb(106, 148, 100);
+  margin-right : auto;
+}
+.message-right{
+  margin-right:2em;
+  background-color: rgb(80, 164, 80);
+  margin-left : auto;
+  /* align-items: flex-end; */
+}
+
+.message-right > *{
+  margin-left:auto;
+}
+.message-author{
+  font-size:0.8em;
+}
+
+.message-text{
+  font-weight: 500;
+  font-size : 1em;
+  max-width: 20em;
+  overflow-wrap: break-word;
+}
+
+.message-timestamp{
+  font-size:0.6em;
+  font-weight:600;
+  margin-top:0.5em
+}
+
+
+
+.send-container{
+  display: flex;
+  /* width:20em; */
+  
+
+  flex-direction: row;
+  justify-content: center;
+}
+
+.message-inputbox{
+  background: rgba(42, 43, 57, 0.5);
+  width: 20em;
+  color : white;
+  border-radius:7px;
+  padding:4px;
+}
+
+
+
+
+
+
+@media only screen and (max-width: 800px) {
+  body {
+    font-size: 0.8em
+  }
+  .container-master{
+    font-size: 0.8em
+  }
+}
+
+@media only screen and (max-width: 530px) {
+  body {
+    font-size: 0.7em
+  }
+}
+
+@media only screen and (max-width: 490px) {
+  body {
+    font-size: 0.6em
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  body {
+    font-size: 0.5em
+  }
+}

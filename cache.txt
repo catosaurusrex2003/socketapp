@@ -1,0 +1,8 @@
+things to add
+
+* bottom scroll when new message
+* login responsive
+* new member join message broadcast
+* when someone disconnects send message
+ONLINE MEMBERS
+
