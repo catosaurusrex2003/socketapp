@@ -1,6 +1,7 @@
 import React, { useEffect , useRef , useState } from 'react'
 import Message from './message'
 import Neutral from './neutral'
+import OnlineGrid from './onlinegrid'
 
 function Chat({socket,username,room}) {
     const [message, setMessage] = useState("")
@@ -11,7 +12,6 @@ function Chat({socket,username,room}) {
     useEffect(() => {
       bottomRef.current?.scrollIntoView({behavior:"smooth"})
     }, [messageList])
-    
     
 
     useEffect(() => {
@@ -64,26 +64,27 @@ function Chat({socket,username,room}) {
     }
 
     return (
-        <div className='container-master'>
-            <div className='container' >
-                {/* <Neutral data={{message:"someone joined",time:"2:47pm"}}/> */}
-                {[messageList.map((each)=>{
-                    if(each.type == "message")
-                        return(<Message data={each} left = {each.author == username} />)
-                    else return(<Neutral data={each}/>)
-                })]}
-                <div
-                    // this is a dummy div it has nothing in it
-                    style={{ 
-                        float:"left", 
-                        clear: "both" 
-                        }} 
-                    ref = {bottomRef}
-                >
+        <div className='container-master-master'>
+            <div className='container-master'>
+                <div className='container' >
+                    {/* <Neutral data={{message:"someone joined",time:"2:47pm"}}/> */}
+                    {[messageList.map((each)=>{
+                        if(each.type == "message")
+                            return(<Message data={each} left = {each.author == username} />)
+                        else return(<Neutral data={each}/>)
+                    })]}
+                    <div
+                        // this is a dummy div it has nothing in it
+                        style={{ 
+                            float:"left", 
+                            clear: "both" 
+                            }} 
+                        ref = {bottomRef}
+                    >
+                    </div>
                 </div>
-            </div>
-            <div className="send-container">
-                    <input 
+                <div className="send-container">
+                    <input
                         type="text" 
                         name="message" 
                         className='message-inputbox'
@@ -91,11 +92,15 @@ function Chat({socket,username,room}) {
                             setMessage(e.target.value)
                             }}
                         value = {message}
+                        placeholder="Type something..."
                         onKeyDown={(e)=>{keypress(e)}}
                     />
                     <button className='btn' onClick={sendMessage} >&#9658;</button>
                 </div>
+            </div>
+            <OnlineGrid List = {onlineList}/>
         </div>
+        
     )
 }
 
