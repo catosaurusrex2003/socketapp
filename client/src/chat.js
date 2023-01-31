@@ -15,16 +15,15 @@ function Chat({socket,username,room}) {
     
 
     useEffect(() => {
-        console.log("useeffect running")
-
         socket.on("recieve-message",(data)=>{
-            console.log("data")
+            // console.log("data")
             setMessageList((list)=>[...list,data])
         })
 
         socket.on("someone-joined",(username,time)=>{
             setMessageList((list)=>[...list,{username:username,time:time,join:true}])
             setOnlineList((prev) => [...prev,username])
+            socket.emit("i-am-online",username)
             console.log("username joined ",{username:username,time:time})
         })
 
@@ -34,10 +33,20 @@ function Chat({socket,username,room}) {
             console.log("username left ",{username:username,time:time})
         })
 
+        socket.on("online-member-update",(onlinelist)=>{
+            onlinelist.forEach(element => {
+                if(onlinelist.room = room){
+                    console.log(element.members)
+                    setOnlineList(element.members)
+                }
+            });
+        })
+
         return () => {
-        socket.off("recieve-message").off();
-        socket.off("someone-joined").off();
-        socket.off("someone-left").off();
+        socket.off("recieve-message");
+        socket.off("someone-joined");
+        socket.off("someone-left");
+        socket.off("online-member-update");
         }
     },[socket])
     

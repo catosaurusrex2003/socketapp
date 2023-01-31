@@ -1,17 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./join.css"
 
-function Join({ setUsername, setRoom, joinroom }) {
+function Join({ setUsername, setRoom, joinroom ,socket }) {
 
     function keypress(e){
         e.code =="Enter" && joinroom()
     }
+    useEffect(() => {
+        socket.on("online-member-update",(onlinelist)=>{
+            console.log(onlinelist)
+        })
+    
+      return () => {
+        socket.off("online-member-update")
+      }
+    }, [])
+    
 
     return (
-        <div class="login-box">
+        <div className="login-box">
             <h2>Enter Room</h2>
             <form>
-                <div class="user-box">
+                <div className="user-box">
                     <input 
                         type="text" 
                         name=""
@@ -23,7 +33,7 @@ function Join({ setUsername, setRoom, joinroom }) {
                     />
                     <label>Username</label>
                 </div>
-                <div class="user-box">
+                <div className="user-box">
                     <input 
                         type="text" 
                         name=""

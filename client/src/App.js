@@ -17,22 +17,17 @@ function App() {
 
   function joinroom() {
     if (username && room && !showChat) {
-      console.log("emitted ", username, room)
       socket.emit("join-room", room ,username)
       setShowChat(true)
     }
   }
-  // var elem = document.getElementById('container');
-  // elem.scrollTop = elem.scrollHeight;
 
   return (
     <div className="App">
       {!showChat ?<p className='Heading'>Live Anonymous Room</p>
-      :<p className='Heading'>Room Id : {room}</p>}
-
-      
+      :<p className='Heading'>Room Id : {room}</p>}      
       {!showChat ?
-        <Join setUsername = {setUsername} setRoom = {setRoom} joinroom = {joinroom}/>
+        <Join setUsername = {setUsername} setRoom = {setRoom} joinroom = {joinroom} socket={socket} />
         :<Chat socket={socket} username={username} room={room} />}
     </div>
   )

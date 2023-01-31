@@ -4,5 +4,5 @@ things to add
 * login responsive
 * new member join message broadcast
 * when someone disconnects send message
-ONLINE MEMBERS
+* online members on individual socket done
 

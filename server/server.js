@@ -13,6 +13,8 @@ const io = new Server(server , {
     }
 })
 
+var online_people = [
+]
 
 app.get("/",(req,res)=>{
     res.send("meow")
@@ -22,19 +24,73 @@ io.on("connection",(socket)=>{
 
     console.log("connected on ",socket.id)
     
+
+
     socket.on("join-room",(room,username)=>{
         
         socket.join(room)
 
-        var time = new Date()
-        var currentTime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
-
         socket.to(room).emit("someone-joined",username,currentTime)
         console.log(`user => Id: ${socket.id} Name: ${username} joined the Room: ${room}`)
 
+        var bool = false
+        online_people.forEach(element => {
+            if(element.room==room){
+                bool = true
+                element.members.push(username)
+            }
+        });
+        if(!bool){
+            online_people.push({
+                room:room,
+                members:[username]
+            })
+        }
+
+        console.log(online_people)
+
+        socket.emit("online-member-update",online_people)
+
+        online_people.forEach(element => {
+            if(element.room == room){
+                socket.to(room).emit("online-member-update",online_people)
+            }
+        });
+
+        
+
+
+        var time = new Date()
+        var currentTime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+        console.log(`user => Id: ${socket.id} Name: ${username} joined the Room: ${room}`)
         socket.on("disconnect",()=>{
             socket.to(room).emit("someone-left",username,currentTime)
+            
+            
+            online_people.forEach((each)=>{
+                if(each.room == room){
+                    each.members = each.members.filter((each2)=>{
+                        if(each2 != username){
+                            console.log(each2)
+                            return(username)                        
+                        }
+                    })
+                    if(!each.members.length){
+                        online_people = online_people.filter((each)=>{
+                            if(each.room != room ){
+                                return(each)
+                            }
+                        })
+                    }
+                }
+
+            })
+
+
             console.log(`${username} left the room at ${currentTime}`)
+            console.log(online_people)
+            socket.to(room).emit("online-member-update",online_people)
+
         })
     })
     
