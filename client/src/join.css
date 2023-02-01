@@ -1,7 +1,6 @@
 html {
     height: 100%;
   }
-
   
   .login-box {
     position: absolute;
@@ -95,6 +94,46 @@ html {
     background: linear-gradient(90deg, transparent, #03e9f4);
     animation: btn-anim1 1s linear infinite;
   }
+
+.active-rooms-master-master{
+  position: absolute;
+  top:9em;
+  right:2em;
+}
+
+.active-rooms-master{
+  width: 14em;
+  color:white;
+  background: rgba(0,0,0,.5);
+  margin-left:2em;
+  border-radius:10px;
+  max-height: 13em;
+  display: flex;
+  flex-direction: column; 
+}
+
+
+.active-rooms-header{
+  text-align: center;
+  font-size: 1.5em;
+  border-bottom: solid white 2px;;
+  height:2em;
+  min-height:2em;
+  position:relative;
+}
+
+.active-rooms-header > p{
+  position :absolute;
+  width: 7em;
+  top:-26%;
+  left:16%;
+}
+
+.active-rooms-list{
+  display:flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
   
   @keyframes btn-anim1 {
     0% {

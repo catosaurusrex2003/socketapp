@@ -5,4 +5,6 @@ things to add
 * new member join message broadcast
 * when someone disconnects send message
 * online members on individual socket done
-
+show online rooms on the join page
+Send images/mp4/mp3/pdf
+Video calling

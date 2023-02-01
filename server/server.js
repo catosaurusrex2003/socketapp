@@ -21,18 +21,18 @@ app.get("/",(req,res)=>{
 })
 
 io.on("connection",(socket)=>{
-
     console.log("connected on ",socket.id)
-    
 
+    socket.emit("rooms-update",online_people)
 
     socket.on("join-room",(room,username)=>{
         
         socket.join(room)
 
+        var currentTime = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
         socket.to(room).emit("someone-joined",username,currentTime)
         console.log(`user => Id: ${socket.id} Name: ${username} joined the Room: ${room}`)
-
+        
         var bool = false
         online_people.forEach(element => {
             if(element.room==room){
@@ -48,9 +48,7 @@ io.on("connection",(socket)=>{
         }
 
         console.log(online_people)
-
         socket.emit("online-member-update",online_people)
-
         online_people.forEach(element => {
             if(element.room == room){
                 socket.to(room).emit("online-member-update",online_people)
@@ -58,14 +56,9 @@ io.on("connection",(socket)=>{
         });
 
         
-
-
-        var time = new Date()
-        var currentTime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
-        console.log(`user => Id: ${socket.id} Name: ${username} joined the Room: ${room}`)
+        
         socket.on("disconnect",()=>{
             socket.to(room).emit("someone-left",username,currentTime)
-            
             
             online_people.forEach((each)=>{
                 if(each.room == room){
@@ -83,7 +76,6 @@ io.on("connection",(socket)=>{
                         })
                     }
                 }
-
             })
 
 
@@ -94,7 +86,6 @@ io.on("connection",(socket)=>{
         })
     })
     
-
     socket.on("new-message",(data)=>{
         socket.to(data.room).emit("recieve-message",data)
     })
