@@ -98,6 +98,11 @@ body {
   overflow-wrap: break-word;
 }
 
+.message-img{
+  width:14em;
+  height:auto;
+}
+
 .message-timestamp{
   font-size:0.6em;
   font-weight:600;
@@ -109,6 +114,16 @@ body {
   flex-direction: row;
   justify-content: center;
 }
+
+
+.file-upload-span{
+  /* background-color: red; */
+}
+
+.file-input{
+  /* display: none; */
+}
+
 
 .message-inputbox{
   background: rgba(42, 43, 57, 0.5);

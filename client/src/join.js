@@ -11,10 +11,7 @@ function Join({ setUsername, setRoom, joinroom ,socket }) {
     }
     useEffect(() => {
         socket.on("rooms-update",(onlinelist)=>{
-            console.log(onlinelist)
-            // var array = 
             setActiveRooms(onlinelist.map(each=>{
-                // console.log(each)
                 return(each.room)
             }))
         })

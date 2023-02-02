@@ -57,8 +57,6 @@ io.on("connection",(socket)=>{
             }
         });
 
-        
-        
         socket.on("disconnect",()=>{
             socket.to(room).emit("someone-left",username,currentTime)
             
@@ -89,6 +87,7 @@ io.on("connection",(socket)=>{
     })
     
     socket.on("new-message",(data)=>{
+        console.log(data)
         socket.to(data.room).emit("recieve-message",data)
     })
 
