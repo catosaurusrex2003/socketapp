@@ -7,6 +7,8 @@ const {Server} = require("socket.io")
 app.use(cors())
 const server = http.createServer(app)
 
+const port = process.env.PORT || 3001
+
 const io = new Server(server , {
     cors: {
         origin: "http://localhost:3000"
@@ -92,6 +94,6 @@ io.on("connection",(socket)=>{
 
 })
 
-server.listen("3001",()=>{
+server.listen(port,()=>{
     console.log("\x1b[1m\x1b[33mS\x1b[31mE\x1b[32mR\x1b[34mV\x1b[35mE\x1b[36mR\x1b[37m \x1b[33mR\x1b[31mU\x1b[32mN\x1b[34mN\x1b[35mI\x1b[36mN\x1b[37m\x1b[33mG \x1b[31mO\x1b[32mN \x1b[34mP\x1b[35mO\x1b[36mR\x1b[37m\x1b[33mT\x1b[0m","3001")
 })

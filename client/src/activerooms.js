@@ -18,7 +18,7 @@ function Emptylist(){
 }
 
 function ActiveRooms({List}) {
-    console.log("active rooms is ",List)
+    // console.log("active rooms is ",List)
   return (
     <div className='active-rooms-master'>
         <div className='active-rooms-header'>

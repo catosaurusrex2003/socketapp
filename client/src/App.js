@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 import Chat from './chat';
 import Join from './join';
 
-const socket = io.connect("http://localhost:3001");
+const socket = io.connect("localhost:3001/");
 
 function App() {
 
