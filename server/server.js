@@ -31,7 +31,7 @@ io.on("connection",(socket)=>{
         
         socket.join(room)
 
-        var currentTime = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+        var currentTime = new Date().toLocaleString('en-US', {timeZone: "Asia/Kolkata" ,hour: 'numeric', minute: 'numeric', hour12: true })
         socket.to(room).emit("someone-joined",username,currentTime)
         console.log(`user => Id: ${socket.id} Name: ${username} joined the Room: ${room}`)
         
