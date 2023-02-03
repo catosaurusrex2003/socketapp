@@ -11,7 +11,6 @@ import Videoroom from './videoroom';
 const socket = io.connect("wss://historical-orchid-hardware.glitch.me/");
 
 function App() {
-
   const [username, setUsername] = useState("")
   const [room, setRoom] = useState("")
   const [showChat, setShowChat] = useState(false)

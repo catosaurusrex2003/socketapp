@@ -9,6 +9,11 @@ import Peer from "simple-peer"
 import "./videoroom.css"
 
 function Videoroom({socket , me}) {
+
+	
+	const myVideo = useRef()
+	const userVideo = useRef()
+	const connectionRef = useRef()
 	
 	const [stream, setStream] = useState()
 	const [receivingCall, setReceivingCall] = useState(false)
@@ -18,17 +23,28 @@ function Videoroom({socket , me}) {
 	const [idToCall, setIdToCall] = useState("")
 	const [callEnded, setCallEnded] = useState(false)
 	const [name, setName] = useState("")
+	const [faltu , setFaltu] = useState(true)
 
-	const myVideo = useRef()
-	const userVideo = useRef()
-	const connectionRef = useRef()
 
 	useEffect(() => {
-    navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-			.then((stream) => {
-				setStream(stream)
-				myVideo.current.srcObject = stream
-			})
+		navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+		.then((stream) => {
+			setStream(stream)
+			console.log(myVideo.current)
+
+			if (myVideo.current){
+				myVideo.current.srcObject = stream;
+			  } 
+			else{
+					setFaltu((prev)=>!prev)
+			}
+			console.log(myVideo.current)
+
+		})
+		// .catch((error)=>{
+		// 	console.log(error)
+		// })
+		console.log("useEffect")
 
 		socket.on("callUser", (data) => {
 			setReceivingCall(true)
@@ -36,11 +52,11 @@ function Videoroom({socket , me}) {
 			setName(data.name)
 			setCallerSignal(data.signal)
 		})
-  
+
     return() => {
       socket.off("callUser")
     }
-  }, [])
+  }, [myVideo,faltu])
   
 
 	const callUser = (id) => {
@@ -99,11 +115,11 @@ function Videoroom({socket , me}) {
 			<div className="video-container-master">
 				<div className="video-container">
 					<div className="video">
-						{stream && <video playsInline muted ref={myVideo} autoPlay style={{ width: "300px" }} />}
+						{stream ? <video id="myVideo" playsInline muted ref={myVideo} autoPlay style={{ width: "400px" }} />:null}
 					</div>
 					<div className="video">
 						{callAccepted && !callEnded ?
-							<video playsInline ref={userVideo} autoPlay style={{ width: "300px" }} /> :
+							<video playsInline id="userVideo" ref={userVideo} autoPlay style={{ width: "400px" }}/>:
 							null}
 					</div>
 				</div>
@@ -116,6 +132,7 @@ function Videoroom({socket , me}) {
 						onChange={(e) => setName(e.target.value)}
 						style={{ marginBottom: "20px" }}
 					/>
+					
 					<CopyToClipboard text={me} style={{ marginBottom: "2rem" }} >
 						<Button variant="contained" color="primary" startIcon={<AssignmentIcon fontSize="large" />}>
 							Copy ID
@@ -124,7 +141,7 @@ function Videoroom({socket , me}) {
 
 					<TextField
 						id="filled-basic"
-						label="ID to call"
+						label="ID of reciever"
 						variant="filled"
 						value={idToCall}
 						onChange={(e) => setIdToCall(e.target.value)} 
@@ -153,6 +170,7 @@ function Videoroom({socket , me}) {
 					) : null}
 				</div>
 			</div>
+			
 		</>
 	)
 }
