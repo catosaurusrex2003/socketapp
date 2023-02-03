@@ -156,7 +156,6 @@ body {
 
 .online-header > p{
   position :absolute;
-  top:-13px;
   left:34%;
 }
 
@@ -169,7 +168,7 @@ body {
 .eachblock{
   display: flex;
   flex-direction:row;
-  align-items: center;
+  align-items:center;
   justify-content:center;
   font-size:0.8em;
 }
@@ -188,8 +187,6 @@ body {
 }
 
 .empty-list{
-  /* background-color: white; */
-  /* color:white; */
   display:flex;
   flex-direction: row;;
   align-items: center;
@@ -197,7 +194,6 @@ body {
 }
 
 .empty-p{
-  /* background-color: white; */
   color:white;
 }
 

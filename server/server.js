@@ -91,6 +91,22 @@ io.on("connection",(socket)=>{
         socket.to(data.room).emit("recieve-message",data)
     })
 
+    socket.emit("me", socket.id)
+    console.log("emitted me")
+
+	socket.on("disconnect", () => {
+        console.log("here")
+		socket.broadcast.emit("callEnded")
+	})
+
+	socket.on("callUser", (data) => {
+		io.to(data.userToCall).emit("callUser", { signal: data.signalData, from: data.from, name: data.name })
+	})
+
+	socket.on("answerCall", (data) => {
+		io.to(data.to).emit("callAccepted", data.signal)
+	})
+
 })
 
 server.listen(port,()=>{

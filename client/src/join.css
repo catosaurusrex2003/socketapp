@@ -4,7 +4,7 @@ html {
   
   .login-box {
     position: absolute;
-    top: 60%;
+    top: 70%;
     left: 50%;
     width: 27em;
     padding: 4em;
@@ -97,7 +97,7 @@ html {
 
 .active-rooms-master-master{
   position: absolute;
-  top:9em;
+  top:16em;
   right:2em;
 }
 
@@ -125,7 +125,6 @@ html {
 .active-rooms-header > p{
   position :absolute;
   width: 7em;
-  top:-26%;
   left:16%;
 }
 
