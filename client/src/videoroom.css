@@ -1,50 +1,72 @@
+.video-container-master-header{
+	color:white;
+}
+
 .video-container-master {
-	display: grid;
-	grid-template-columns: 7fr 3fr;
+	display:flex;
+	flex-direction: row;
+}
+
+.video-container{
+	display:flex;
+	flex-direction: row;
+}
+
+.video-tag{
+	height:20em;
 }
 
 .myId {
-	margin-right: 5rem;
-	border-radius: 5px;
-	/* background: #c9d6ff; fallback for old browsers */
-	background: -webkit-linear-gradient(to right, #e2e2e2, #c9d6ff); /* Chrome 10-25, Safari 5.1-6 */
 	background: linear-gradient(
 		to right,
 		#e2e2e2,
 		#c9d6ff
-	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-	padding: 2rem;
-	display: grid;
+	);
+	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-content: center;
+}
+
+.inside-myId{
+	margin-top:10em;
 }
 
 .call-button {
 	text-align: center;
-	margin-top: 2rem;
 }
 
-.video-container {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	justify-content: center;
-	align-content: center;
-	margin-top: 10rem;
-	margin-left: 10rem;
-}
 
-.caller {
-	text-align: center;
-	color: #fff;
-}
 
+
+@media only screen and (max-width: 1000px) {
+	body {
+	  font-size: 0.88em
+	}
+	.video-container-master {
+		display:flex;
+		flex-direction: column;
+	}
+  }
+  
+
+@media only screen and (max-width: 800px) {
 body {
-	background: #4776e6; /* fallback for old browsers */
-	background: -webkit-linear-gradient(to right, #8e54e9, #4776e6); /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(
-		to right,
-		#8e54e9,
-		#4776e6
-	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	font-size: 0.7em
 }
+
+}
+
+
+@media only screen and (max-width: 800px) {
+body {
+	font-size: 0.9em
+}
+.video-container{
+	display:flex;
+	flex-direction: column;
+}
+	
+}
+	  
+  

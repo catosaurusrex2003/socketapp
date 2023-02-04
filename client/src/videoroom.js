@@ -111,15 +111,17 @@ function Videoroom({socket , me}) {
 
 	return (
 		<>
-			<h1 style={{ textAlign: "center", color: '#fff' }}>Private Video Call</h1>
+			<h1 className='video-container-master-header' >Private Video Call</h1>
 			<div className="video-container-master">
 				<div className="video-container">
-					<div className="video">
-						{stream ? <video id="myVideo" playsInline muted ref={myVideo} autoPlay style={{ width: "400px" }} />:null}
+					<div className="video-master">
+						{stream ? 
+							<video id="myVideo" className='video-tag' playsInline muted ref={myVideo} autoPlay/>:
+							null}
 					</div>
-					<div className="video">
+					<div className="video-master">
 						{callAccepted && !callEnded ?
-							<video playsInline id="userVideo" ref={userVideo} autoPlay style={{ width: "400px" }}/>:
+							<video id="userVideo" className='video-tag'playsInline ref={userVideo} autoPlay/>:
 							null}
 					</div>
 				</div>
@@ -130,11 +132,10 @@ function Videoroom({socket , me}) {
 						variant="filled"
 						value={name}
 						onChange={(e) => setName(e.target.value)}
-						style={{ marginBottom: "20px" }}
 					/>
 					
-					<CopyToClipboard text={me} style={{ marginBottom: "2rem" }} >
-						<Button variant="contained" color="primary" startIcon={<AssignmentIcon fontSize="large" />}>
+					<CopyToClipboard text={me}  >
+						<Button variant="contained" color="primary" startIcon={<AssignmentIcon />}>
 							Copy ID
 						</Button>
 					</CopyToClipboard>
@@ -153,10 +154,9 @@ function Videoroom({socket , me}) {
 							</Button>
 						) : (
 							<IconButton color="primary" aria-label="call" onClick={() => callUser(idToCall)}>
-								<PhoneIcon fontSize="large" />
+								<PhoneIcon  />
 							</IconButton>
 						)}
-						{idToCall}
 					</div>
 				</div>
 				<div>

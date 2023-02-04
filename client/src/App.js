@@ -7,10 +7,11 @@ import Join from './join';
 import Navbar from './navbar';
 import Videoroom from './videoroom';
 
-// const socket = io.connect("localhost:3001/");
-const socket = io.connect("wss://historical-orchid-hardware.glitch.me/");
+const socket = io.connect("localhost:3001/");
+// const socket = io.connect("wss://historical-orchid-hardware.glitch.me/");
 
 function App() {
+  const [messageList, setMessageList] = useState([])
   const [username, setUsername] = useState("")
   const [room, setRoom] = useState("")
   const [showChat, setShowChat] = useState(false)
@@ -44,13 +45,13 @@ function App() {
         <Videoroom socket = {socket} me = {me} />
         : !showChat ?
             <>
-              <p className='Heading'>Live Anonymous Room</p>
+              <p className='Heading'>Live Chat Room</p>
               <Join setUsername = {setUsername} setRoom = {setRoom} joinroom = {joinroom} socket={socket}/>
             </>
           :
           <>
             <p className='Heading'>Room Id : {room}</p>
-            <Chat socket={socket} username={username} room={room} />
+            <Chat socket={socket} username={username} room={room} messageList={messageList} setMessageList={setMessageList}/>
           </>
       }
         

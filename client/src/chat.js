@@ -2,11 +2,11 @@ import React, { useEffect , useRef , useState } from 'react'
 import Message from './message'
 import Neutral from './neutral'
 import OnlineGrid from './onlinegrid'
+import SendIcon from '@mui/icons-material/Send';
 
-function Chat({socket,username,room}) {
+function Chat({socket,username,room , messageList , setMessageList}) {
     const [message, setMessage] = useState("")
     const [file, setFile] = useState()
-    const [messageList, setMessageList] = useState([])
     const [onlineList, setOnlineList] = useState([])
     const bottomRef = useRef()
 
@@ -150,7 +150,8 @@ function Chat({socket,username,room}) {
                         placeholder="Type something..."
                         onKeyDown={(e)=>{keypress(e)}}
                     />
-                    <button className='btn' onClick={sendMessage} >&#9658;</button>
+                    {/* <button className='btn' onClick={sendMessage} >&#9658;</button> */}
+                    <SendIcon onClick={sendMessage} className='send-button'/>
                 </div>
             </div>
             <OnlineGrid List = {onlineList}/>

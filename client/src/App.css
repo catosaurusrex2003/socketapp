@@ -3,10 +3,13 @@
 } */
 
 body {
-  margin:0;
-  padding:0;
-  font-family: sans-serif;
-  background: linear-gradient(#141e30, #243b55);
+	background: #4776e6; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #8e54e9, #4776e6); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(
+		to right,
+		#8e54e9,
+		#4776e6
+	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .App{
@@ -116,13 +119,7 @@ body {
 }
 
 
-.file-upload-span{
-  /* background-color: red; */
-}
 
-.file-input{
-  /* display: none; */
-}
 
 
 .message-inputbox{
@@ -133,7 +130,19 @@ body {
   padding:4px;
 }
 
+
+.send-button{
+  color:rgb(71, 71, 71);
+  margin-left:0.5em;
+}
+
+.send-button:active{
+  color: black;
+  /* background-color: rgba(0, 0, 0, 0.445);; */
+}
+
 .online-master{
+  margin-top:2em;
   width: 14em;
   color:white;
   background: rgba(0,0,0,.5);
@@ -218,11 +227,6 @@ body {
   }
 }
 
-@media only screen and (max-width: 530px) {
-  body {
-    font-size: 0.7em
-  }
-}
 
 @media only screen and (max-width: 630px) {
   .container-master-master{
@@ -230,16 +234,23 @@ body {
     flex-direction: column;
     align-items: center
   }
+
 }
 
 @media only screen and (max-width: 490px) {
   body {
-    font-size: 0.6em
+    font-size: 0.7em
+  }
+  .container-master{
+    font-size: 0.7em
   }
 }
 
 @media only screen and (max-width: 400px) {
   body {
     font-size: 0.5em
+  }
+  .container-master{
+    font-size: 0.6em
   }
 }
