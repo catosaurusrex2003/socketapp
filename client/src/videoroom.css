@@ -16,6 +16,11 @@
 	height:20em;
 }
 
+.video-master{
+	display: flex;
+	justify-content:center
+}
+
 .myId {
 	background: linear-gradient(
 		to right,
