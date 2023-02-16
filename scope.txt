@@ -7,8 +7,12 @@ things to add
 * online members on individual socket done
 * show online rooms on the join page
 * deployed and is running
-Send images/mp4/mp3/pdf
-is typing
-notif sound on recieving new message
-voice calling
-Video calling
+* Video calling
+* Send mp4/mp3/pdf/ all file types
+* notif sound on recieving new message
+* also ringtone playing when call recieving
+
+to do :
+
+modal on recieving call
+is typing showing when someone types through socket

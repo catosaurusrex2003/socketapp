@@ -97,8 +97,12 @@ body {
 .message-text{
   font-weight: 500;
   font-size : 1em;
-  max-width: 20em;
+  max-width: 19em;
   overflow-wrap: break-word;
+}
+
+.download-link{
+  color: rgb(42, 42, 191);
 }
 
 .message-img{
