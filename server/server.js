@@ -3,19 +3,16 @@ const app = express()
 const http = require("http")
 const cors = require("cors")
 const {Server} = require("socket.io") 
+const corsOptions = require("./config/corsOptions.js")
 
 app.use(cors())
 const server = http.createServer(app)
 
 const port = process.env.PORT || 3001
 
-const io = new Server(server , {
-    cors: {
-        // origin: "http://localhost:3000"
-        origin: "http://127.0.0.1:5173"
-    }
-})
+const io = new Server(server , corsOptions )
 
+// console.log(corsOptions)
 
 var online_people = [
 ]
@@ -34,16 +31,20 @@ io.on("connection",(socket)=>{
         socket.join(room)
 
         var currentTime = new Date().toLocaleString('en-US', {timeZone: "Asia/Kolkata" ,hour: 'numeric', minute: 'numeric', hour12: true })
+        
         socket.to(room).emit("someone-joined",username,currentTime)
+
         console.log(`user => Id: ${socket.id} Name: ${username} joined the Room: ${room}`)
         
         var bool = false
+
         online_people.forEach(element => {
             if(element.room==room){
                 bool = true
                 element.members.push(username)
             }
         });
+        
         if(!bool){
             online_people.push({
                 room:room,
