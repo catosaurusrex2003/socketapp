@@ -16,3 +16,8 @@ to do :
 
 modal on recieving call
 is typing showing when someone types through socket
+
+
+peer.destroy()
+
+

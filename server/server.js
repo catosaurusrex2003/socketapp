@@ -18,7 +18,13 @@ var online_people = [
 ]
 
 app.get("/",(req,res)=>{
-    res.send("meow")
+    res.send("sadasd")
+})
+
+
+app.post("/",(req,res)=>{
+    console.log(req)
+    res.send("oksdfsdfsdf")
 })
 
 io.on("connection",(socket)=>{
@@ -103,10 +109,12 @@ io.on("connection",(socket)=>{
 	})
 
 	socket.on("callUser", (data) => {
+        console.log("callUser = ",data)
 		io.to(data.userToCall).emit("callUser", { signal: data.signalData, from: data.from, name: data.name })
 	})
 
 	socket.on("answerCall", (data) => {
+        console.log("answerCall = ",data)
 		io.to(data.to).emit("callAccepted", data.signal)
 	})
 
