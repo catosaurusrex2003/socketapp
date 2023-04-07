@@ -34,7 +34,8 @@ app.post("/",(req:Request,res:Response)=>{
 })
 
 io.on("connection",(socket:any)=>{
-    logger.info("connected on ",socket.id)
+    
+    logger.info("connected on "+socket.id)
 
     socket.emit("rooms-update",online_people)
 
