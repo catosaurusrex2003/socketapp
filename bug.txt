@@ -1,0 +1,2 @@
+when typing array is sent to the client.
+make sure you remove your username from the array. or it will show ur username in it

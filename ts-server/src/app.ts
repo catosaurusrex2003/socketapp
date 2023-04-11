@@ -54,6 +54,9 @@ io.on("connection",(socket:any)=>{
         logger.info(online_people)
 
         socket.emit("online-member-update",online_people)
+        socket.to(room).emit("online-member-update",online_people)
+
+        // -----------------------------------------------------------------------------------------------------
 
         // i dont know why i put this here this is not needed. the above line does the same work
         // online_people.forEach(element => {
@@ -61,6 +64,8 @@ io.on("connection",(socket:any)=>{
         //         socket.to(room).emit("online-member-update",online_people)
         //     }
         // });
+
+        // -----------------------------------------------------------------------------------------------------
 
         socket.on("disconnect",()=>{
             socket.to(room).emit("someone-left",username,currentTime)

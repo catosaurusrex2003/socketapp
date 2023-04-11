@@ -91,8 +91,9 @@ function ChatRoom({
     );
 
     socket.on("typing-update", (data) => {
-      console.log("typing update = ", data);
-      setTypingList(data);
+      setTypingList(data.filter((each:string) => 
+      each !== username
+    ))
     });
 
     return () => {

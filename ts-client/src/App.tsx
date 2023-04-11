@@ -11,6 +11,7 @@ import VideoPage from "./pages/Video";
 import io , {connect} from 'socket.io-client';
 import { generalMessageType } from "./types/message.type";
 import { onlinePeopleType } from "./types/onlinePeople.type";
+
 const socket = connect("localhost:3001/");
 // const socket = io.connect("wss://historical-orchid-hardware.glitch.me/");
 
