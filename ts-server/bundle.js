@@ -29,20 +29,11 @@ const addActivemember = (room,username) => {
 }
 
 const removeActivemember = (room,username) => {
-    online_people.forEach((each)=>{
-        if(each.room == room){
-            each.members = each.members.filter((each2)=>{
-                if(each2 != username){
-                    // console.log(each2)
-                    return(username)                        
-                }
-            })
-            if(!each.members.length){
-                var newList = online_people.filter((each)=>{
-                    if(each.room != room ){
-                        return(each)
-                    }
-                })
+    online_people.forEach((element)=>{
+        if(element.room == room){
+            element.members = element.members.filter((each)=> each != username )
+            if(!element.members.length){
+                var newList = online_people.filter((element)=> element.room!=room )
                 setOnlinePeople(newList)
             }
         }
@@ -71,15 +62,11 @@ const addTypingmember = (room,username) => {
 }
 
 const removeTypingmember = (room,username) => {
-    online_people.forEach((each)=>{
-    if(each.room == room){
-        each.typing = each.typing.filter((each2)=>{
-            if(each2 != username){
-                // console.log(each2," removed from typing")
-                return(username)                        
-            }
-        })
-    }
+    online_people.forEach((element)=>{
+        if(element.room == room){
+            element.typing = element.typing.filter((each)=>each != username)
+            // console.log(element)
+        }
     })
 }
 
