@@ -15,6 +15,9 @@ things to add
 * pasting image in message bar allowed
 * modal show on pasting or uploading an image
 
+responsive
+themes
+notif sounds
 modal on recieving call
 emit back to client
 enter button so that mobile users can use
