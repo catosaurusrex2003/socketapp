@@ -41,11 +41,6 @@ const removeActivemember = (room:string,username:string) => {
 const addTypingmember = (room:string,username:string) => {
     online_people.forEach(element => {
     if(element.room==room){
-        // console.log(element.room)
-        // console.log(element)
-        // element.typing = []
-        // element.typing.push("meow")
-        // console.log(element)
         if(element.typing){
             console.log("1")
             if(!element.typing.includes(username)){
@@ -73,15 +68,6 @@ const removeTypingmember = (room:string,username:string) => {
                 return(username)                        
             }
         })
-        console.log(each)
-        // if(!each.members.length){
-        //     var newList = online_people.filter((each)=>{
-        //         if(each.room != room ){
-        //             return(each)
-        //         }
-        //     })
-        //     setOnlinePeople(newList)
-        // }
     }
     })
 }

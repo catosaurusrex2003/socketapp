@@ -109,10 +109,10 @@ io.on("connection",(socket:any)=>{
     socket.emit("me", socket.id)
     logger.info("emitted me")
 
-	socket.on("disconnect", ():void => {
-        logger.info("call Ended")
-		socket.broadcast.emit("callEnded")
-	})
+    //  not needed
+	// socket.on("disconnect", ():void => {
+	// 	socket.broadcast.emit("callEnded")
+	// })
 
 	socket.on("callUser", (data:incomingCallData) => {
         logger.info("callUser")
