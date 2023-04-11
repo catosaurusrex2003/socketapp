@@ -45,7 +45,7 @@ const App = ():JSX.Element => {
     }
   }
 
-  console.log(onlineList)
+  // console.log(onlineList)
 
   useEffect(() => {
     socket.on("me", (id) => {

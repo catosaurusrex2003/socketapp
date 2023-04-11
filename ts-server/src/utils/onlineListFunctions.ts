@@ -38,4 +38,52 @@ const removeActivemember = (room:string,username:string) => {
     })
 }
 
-export {addActivemember,removeActivemember}
+const addTypingmember = (room:string,username:string) => {
+    online_people.forEach(element => {
+    if(element.room==room){
+        // console.log(element.room)
+        // console.log(element)
+        // element.typing = []
+        // element.typing.push("meow")
+        // console.log(element)
+        if(element.typing){
+            console.log("1")
+            if(!element.typing.includes(username)){
+                console.log(username," added in typing")
+                element.typing.push(username)
+            }
+            console.log(element)
+        }
+        else{
+            console.log("2")
+            element.typing = []
+            element.typing.push(username)
+            console.log(element)
+        }
+    }
+    });
+}
+
+const removeTypingmember = (room:string,username:string) => {
+    online_people.forEach((each)=>{
+    if(each.room == room){
+        each.typing = each.typing.filter((each2)=>{
+            if(each2 != username){
+                console.log(each2," removed from typing")
+                return(username)                        
+            }
+        })
+        console.log(each)
+        // if(!each.members.length){
+        //     var newList = online_people.filter((each)=>{
+        //         if(each.room != room ){
+        //             return(each)
+        //         }
+        //     })
+        //     setOnlinePeople(newList)
+        // }
+    }
+    })
+}
+
+export {addActivemember,removeActivemember,addTypingmember,removeTypingmember}

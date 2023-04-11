@@ -11,13 +11,14 @@ things to add
 * Send mp4/mp3/pdf/ all file types
 * notif sound on recieving new message
 * also ringtone playing when call recieving
+* is typing showing when someone types through socket
 
-to do :
 
 modal on recieving call
-is typing showing when someone types through socket
 
-
+emit back to client
+pasting image in message bar allowed
+enter button so that mobile users can use
 peer.destroy()
 
 

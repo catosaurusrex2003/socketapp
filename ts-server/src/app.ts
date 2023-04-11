@@ -5,7 +5,7 @@ import { answerCallData, incomingCallData } from './schema/video.schema';
 
 
 import { online_people } from './db/onlineList';
-import { addActivemember , removeActivemember } from './utils/onlineListFunctions';
+import { addActivemember , addTypingmember, removeActivemember, removeTypingmember } from './utils/onlineListFunctions';
 import logger from './utils/logger';
 
 import express, { Application,Request, Response } from "express"
@@ -75,10 +75,37 @@ io.on("connection",(socket:any)=>{
     })
     
     socket.on("new-message",(data:generalMessageType)=>{
+        console.log("socket something" , socket.id , "socket something" , socket.room , "socket something" , socket.rooms)
         logger.info(data)
-        socket.to(data.room).emit("recieve-message",data)
+        socket.to(data.room).emit("recieve-message",data)   
     })
 
+    socket.on("iam-typing",(room:string,username:string)=>{
+        console.log(username,"is typing")
+        addTypingmember(room,username)
+        online_people.forEach((element) => {
+            // console.log(element)
+            if(element.room == room){
+                socket.to(room).emit("typing-update",element.typing)
+            }
+        })
+        console.log("emitted")
+    })
+
+    // i-finished-typing
+
+    socket.on("i-finished-typing",(room:string,username:string)=>{
+        console.log(username,"finished typing")
+        removeTypingmember(room,username)
+        online_people.forEach((element) => {
+            // console.log(element)
+            if(element.room == room){
+                socket.to(room).emit("typing-update",element.typing)
+            }
+        })
+        console.log("emitted")
+    })
+    
     socket.emit("me", socket.id)
     logger.info("emitted me")
 
