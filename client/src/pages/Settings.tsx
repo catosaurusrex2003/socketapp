@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+import AllContext from "../context/allContext";
 
-interface settingsPagePropsType{
-  currentTheme : string,
-  setCurrentTheme : React.Dispatch<React.SetStateAction<string>>
-}
+const SettingsPage = () => {
 
-const SettingsPage = ({ currentTheme ,setCurrentTheme }:settingsPagePropsType) => {
+  const { theme, setTheme } = useContext(AllContext);
 
+  console.log(theme)
+
+  setTimeout(()=>{
+    setTheme((prev) => prev+"l")
+  },2000)
+
+  console.log("mnehdi is ",theme)
 
   return (
     <div className="flex justify-center">
@@ -20,44 +25,21 @@ const SettingsPage = ({ currentTheme ,setCurrentTheme }:settingsPagePropsType) =
         <div className="flex flex-col overflow-scroll">
           <p
             className={` ${
-              currentTheme == "light" ? "bg-slate-300" : null
+              theme == "light" ? "bg-slate-300" : null
             } text-lg  font-bold py-2 px-1 border-t-[1px] border-gray-300 w-52 text-center `}
-            onClick={()=>setCurrentTheme("light")}
+            onClick={()=>setTheme("light")}
           >
             Light
           </p>
           <p
             className={` ${
-              currentTheme == "dark" ? "bg-slate-300" : null
+              theme == "dark" ? "bg-slate-300" : null
             } text-lg  font-bold py-2 px-1 border-t-[1px] border-gray-300 w-52 text-center `}
-            onClick={()=>setCurrentTheme("dark")}
+            onClick={()=>setTheme("dark")}
           >
             Dark
           </p>
-          <p
-            className={` ${
-              currentTheme == "yellow" ? "bg-slate-300" : null
-            } text-lg  font-bold py-2 px-1 border-t-[1px] border-gray-300 w-52 text-center `}
-            onClick={()=>setCurrentTheme("yellow")}
-          >
-            Yellow
-          </p>
-          <p
-            className={` ${
-              currentTheme == "green" ? "bg-slate-300" : null
-            } text-lg  font-bold py-2 px-1 border-t-[1px] border-gray-300 w-52 text-center `}
-            onClick={()=>setCurrentTheme("green")}
-          >
-            Green
-          </p>
-          <p
-            className={` ${
-              currentTheme == "purple" ? "bg-slate-300" : null
-            } text-lg  font-bold py-2 px-1 border-t-[1px] border-gray-300 w-52 text-center `}
-            onClick={()=>setCurrentTheme("purple")}
-          >
-            Purple
-          </p>
+          
         </div>
       </div>
     </div>

@@ -1,6 +1,11 @@
 import React from 'react'
+import { generalMessageType } from '../types/message.type'
 
-function Neutral({data}) {
+interface nerutralPropsType {
+  data:generalMessageType
+}
+
+const Neutral = ({data}:nerutralPropsType) :JSX.Element => {
   if(data.join){
     return (
       <div className='mr-auto ml-auto max-w-lg text-center px-4 py-2 flex rounded-2xl bg-stone-200 mt-5 items-center '>

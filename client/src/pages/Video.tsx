@@ -1,4 +1,4 @@
-import { LegacyRef, useEffect, useRef, useState } from "react";
+import { LegacyRef, useContext, useEffect, useRef, useState } from "react";
 // @ts-ignore
 import Peer from "simple-peer"
 import PurpleButton from "../components/PurpleButton";
@@ -11,13 +11,13 @@ import phone2 from "../assets/phone2.png";
 // @ts-ignore
 import callCut from "../assets/cutcall.svg";
 import { Socket } from "socket.io-client";
+import AllContext from "../context/allContext";
 
 interface videoPagePropsType {
 	socket:Socket,
-	me : string
 }
 
-const VideoPage = ({socket,me}:videoPagePropsType):JSX.Element => {
+const VideoPage = ({socket}:videoPagePropsType):JSX.Element => {
   	const myVideo = useRef<HTMLVideoElement>()
 	const userVideo = useRef<HTMLVideoElement>()
 	const connectionRef = useRef<Peer>()
@@ -32,6 +32,7 @@ const VideoPage = ({socket,me}:videoPagePropsType):JSX.Element => {
 	const [callEnded, setCallEnded] = useState<boolean>(false)
 	const [name, setName] = useState<string>("")
 	const [faltu , setFaltu] = useState<boolean>(true)
+	const {me} = useContext(AllContext)
 
 
 	useEffect(() => {

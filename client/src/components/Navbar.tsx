@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
+// @ts-ignore
 import homeIcon from "../assets/home_icon.svg";
+// @ts-ignore
 import bellIcon from "../assets/bell.svg";
+// @ts-ignore
 import chatIcon from "../assets/chat.svg";
+// @ts-ignore
 import logoutIcon from "../assets/logout.svg";
+// @ts-ignore
 import settingIcon from "../assets/setting.svg";
+// @ts-ignore
 import videoIcon from "../assets/videorecorder.svg";
 
-function Navbar({ currentPage, setCurrentPage }) {
+import AllContext from "../context/allContext";
+
+const Navbar = () => {
+  
+  const {currentPage,setCurrentPage} = useContext(AllContext);
+
   const activeCss = "bg-violet-700 border-t-4 border-yellow-400";
 
   return (

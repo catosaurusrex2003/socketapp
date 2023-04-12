@@ -2,7 +2,7 @@ import React from "react";
 
 interface activeModalType {
   title:string,
-  list:string[]
+  list:string[] | null
 }
 
 const ActiveModal = ({ title, list }:activeModalType):JSX.Element => {
@@ -15,7 +15,7 @@ const ActiveModal = ({ title, list }:activeModalType):JSX.Element => {
 
       {/* Div list */}
       <div className="flex flex-col overflow-scroll">
-        {list.length?list.map((each) => (
+        {list?.length?list.map((each) => (
           <p className="text-xl text-lime-600  font-bold py-2 px-1 border-t-[1px] border-gray-300 w-52 text-center ">
             {each}
           </p>

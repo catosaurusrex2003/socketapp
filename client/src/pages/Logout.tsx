@@ -1,14 +1,14 @@
-import React from "react";
+import  { useContext } from "react";
+import AllContext from "../context/allContext";
 
-interface logoutPagePropsType {
-  setCurrentPage : React.Dispatch<React.SetStateAction<string>>
-}
 
-const LogoutPage = ({setCurrentPage}:logoutPagePropsType):JSX.Element => {
+const LogoutPage = ():JSX.Element => {
+
+  const { setCurrentPage } = useContext(AllContext);
+  
 
   function logOutClick(params:number) {
     if(params){
-        // console.log("closing")
         window.location.reload()
     }
     else{

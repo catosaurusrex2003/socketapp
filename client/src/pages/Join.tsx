@@ -1,31 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import ActiveModal from "../components/ActiveModal";
 import PurpleButton from "../components/PurpleButton";
 import { Socket } from "socket.io-client";
 import { onlinePeopleType } from "../types/onlinePeople.type";
+import AllContext from "../context/allContext";
 
 interface joinPagePropsType {
   socket:Socket,
-  setUsername : React.Dispatch<React.SetStateAction<string>>,
-  setRoom : React.Dispatch<React.SetStateAction<string>>,
-  joinroom : () => void,
-  activeRooms : string[] | null , 
-  setActiveRooms : React.Dispatch<React.SetStateAction<string[] | null>>,
+  joinroom : () => void
 }
 
 
-// import React from 'react'
+const JoinPage = ({socket , joinroom }:joinPagePropsType) => {
 
-// const JoinPage = () => {
-//   return (
-//     <div>JoinPage</div>
-//   )
-// }
-
-// export default JoinPage
-
-const JoinPage = ({socket,setUsername,setRoom,joinroom,activeRooms,setActiveRooms}:joinPagePropsType) => {
-
+  const {
+    activeRooms,
+    setActiveRooms,
+    setUsername,
+    setRoom
+  } = useContext(AllContext);
 
   function keypress(e:React.KeyboardEvent<HTMLInputElement>){
     e.code =="Enter" && joinroom()

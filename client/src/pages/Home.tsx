@@ -1,9 +1,9 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Socket } from "socket.io-client";
+import AllContext from "../context/allContext";
 
 interface homeProps {
   socket:Socket,
-  setActiveRooms:React.Dispatch<React.SetStateAction<string[] | null>>
 }
 
 interface onlinelistType {
@@ -11,7 +11,10 @@ interface onlinelistType {
   members:string[]
 }
 
-const HomePage = ({socket,setActiveRooms}:homeProps):JSX.Element => {
+const HomePage = ({socket}:homeProps):JSX.Element => {
+
+  const {setActiveRooms
+     } = useContext(AllContext);
 
   useEffect(() => {
     socket.on("rooms-update",(onlinelist:onlinelistType[])=>{
