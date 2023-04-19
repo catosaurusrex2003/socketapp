@@ -17,6 +17,15 @@ things to add
 
 responsive
 themes
+
+
+reply to a message. implement by giv9ng unique id to every message 
+on the client side who made the message. and then get the element 
+by id from the list. this will reflect on all the peoples side
+to the person who hasnt replied to the message a replied to boolean 
+will be true and if the boolean is true then the message sent will 
+be rendered with the message replied to
+
 notif sounds
 modal on recieving call
 emit back to client

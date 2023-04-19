@@ -5,6 +5,7 @@ import React, {
   LegacyRef,
   useContext,
 } from "react";
+import { v4 as uuid } from 'uuid';
 import ActiveModal from "../components/ActiveModal";
 import Message from "../components/Message";
 
@@ -25,6 +26,7 @@ import AllContext from "../context/allContext";
 interface ChatRoomProps extends Pick<ChatPageProps, "socket"> {}
 
 const ChatRoom = ({ socket }: ChatRoomProps) => {
+
   const {
     messageList,
     setMessageList,
@@ -56,7 +58,7 @@ const ChatRoom = ({ socket }: ChatRoomProps) => {
     socket.on("someone-joined", (username, time) => {
       setMessageList((list: generalMessageType[]): generalMessageType[] => [
         ...list,
-        { username: username, time: time, join: true },
+        {m_id:undefined , username: username, time: time, join: true },
       ]);
       setOnlineList((prev: string[]): string[] => [...prev, username]);
       // no need
@@ -66,7 +68,7 @@ const ChatRoom = ({ socket }: ChatRoomProps) => {
     socket.on("someone-left", (username, time) => {
       setMessageList((list: generalMessageType[]): generalMessageType[] => [
         ...list,
-        { username: username, time: time, join: false },
+        {m_id:undefined ,  username: username, time: time, join: false },
       ]);
       setOnlineList((prev: string[]): string[] =>
         prev.filter((each) => each != username)
@@ -101,6 +103,12 @@ const ChatRoom = ({ socket }: ChatRoomProps) => {
   //     let audio = new Audio("notif.mp3")
   //     audio.play()
   // }
+
+  function replytoMessage(e:React.MouseEvent<HTMLDivElement>){
+    const target = e.target as HTMLElement
+    console.log(target.id);
+    
+  }
 
   function selectFile(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.files != null) {
@@ -147,6 +155,7 @@ const ChatRoom = ({ socket }: ChatRoomProps) => {
       var time = new Date();
       // console.log(file)
       const messageData = {
+        m_id : uuid(),
         author: username,
         room: room,
         type: "file",
@@ -174,6 +183,7 @@ const ChatRoom = ({ socket }: ChatRoomProps) => {
     } else if (message) {
       var time = new Date();
       const messageData = {
+        m_id : uuid(),
         room: room,
         author: username,
         message: message,
@@ -210,7 +220,7 @@ const ChatRoom = ({ socket }: ChatRoomProps) => {
           {[
             messageList.map((each) => {
               if (each.type == "message" || each.type == "file")
-                return <Message data={each} right={each.author == username} />;
+                return <Message replytoMessage={replytoMessage} data={each} right={each.author == username} />;
               else return <Neutral data={each} />;
             }),
           ]}

@@ -1,6 +1,7 @@
 import { Buffer } from 'buffer';
 
 export interface generalMessageType {
+    m_id:string | undefined,
     room?:string,
     author?:string,
     username?:string,

@@ -20,7 +20,10 @@ const port = process.env.PORT || 3001
 const app:Application = express()
 const server = http.createServer(app)
 
-const io = new Server(server , corsOptions )
+const io = new Server(server , {
+    maxHttpBufferSize: 1e8 , // 100 MB
+    ...corsOptions
+  }  )
 
 app.get("/",(req:Request,res:Response)=>{
     logger.info("hitted")
@@ -80,9 +83,10 @@ io.on("connection",(socket:any)=>{
     })
     
     socket.on("new-message",(data:generalMessageType)=>{
-        console.log("socket something" , socket.id , "socket something" , socket.room , "socket something" , socket.rooms)
-        logger.info(data)
-        socket.to(data.room).emit("recieve-message",data)   
+        // console.log("socket something" , socket.id , "socket something" , socket.room , "socket something" , socket.rooms)
+        console.log(data)
+        // logger.info(data)
+        socket.to(data.room).emit("recieve-message",data)
     })
 
     socket.on("iam-typing",(room:string,username:string)=>{
