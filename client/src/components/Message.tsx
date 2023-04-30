@@ -25,7 +25,6 @@ const Message = ({ data, right , replytoMessage }: messagePropsType): JSX.Elemen
   
 
   if (data.type == "file") {
-    // console.log(data)
 
     // THIS BELOW IS CAUSING ERROR ON LARGE FILE
     // const base64String = btoa(
@@ -35,19 +34,24 @@ const Message = ({ data, right , replytoMessage }: messagePropsType): JSX.Elemen
     // SO REPLACED WITH THIS TO TEST
     // const base64String = btoa(decoder.decode(data.body));
     // console.log(data.body)
-    const decoder = new TextDecoder('utf-8');
-    const uint8Array = new Uint8Array(data.body);
-    const str = decoder.decode(uint8Array);
-    // console.log(str)
 
     // const base64String = btoa(str);
 
     // const buffer = Buffer.from(str);
     // const base64String = buffer.toString('base64');
 
-    const base64String = fromByteArray(new TextEncoder().encode(str));
-    console.log(base64String)
-
+    var base64String = ""
+    if (data.mimetype == "image/png" || data.mimetype == "image/jpeg") {
+      base64String = btoa(String.fromCharCode(...new Uint8Array(data.body)));
+    }
+    else{
+      // this doesnt work good for images because they are naturally binary data and it first encodes it
+      // to UTF-8 and then encodes it to Base64. This causes loss of certain characters.
+      const decoder = new TextDecoder('utf-8');
+      const uint8Array = new Uint8Array(data.body);
+      const str = decoder.decode(uint8Array);
+      base64String = fromByteArray(new TextEncoder().encode(str));
+    }
 
 
     // IMAGES
